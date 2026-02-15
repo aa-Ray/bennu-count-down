@@ -209,6 +209,9 @@
         }
         
         @media (max-width: 768px) {
+            #logoContainer {
+                transform: translate(-50%, -50%) scale(0.5);
+            }
             .countdown { font-size: 3rem; }
             .days-text { font-size: 1.2rem; }
             .distance-value { font-size: 2rem; }
@@ -250,7 +253,7 @@
             
             <div class="section progress-container">
                 <div class="progress-bar-wrapper">
-                    <div class="progress-bar" id="progressBar" onclick="handleProgressClick(event)">
+                    <div class="progress-bar" id="progressBar">
                         <div class="progress-fill" id="progressFill">
                             <div class="progress-handle" id="progressHandle"></div>
                         </div>
@@ -288,27 +291,86 @@
 const horizonsData = [
   {"date": "2026-Feb-14", "distance_au": 1.571402, "distance_km": 235078342.0},
   {"date": "2027-Jan-01", "distance_au": 2.230766, "distance_km": 333717861.0},
-  {"date": "2030-Jan-01", "distance_au": 1.003792, "distance_km": 150165121.0},
-  {"date": "2040-Jan-01", "distance_au": 2.297318, "distance_km": 343673949.0},
-  {"date": "2050-Jan-01", "distance_au": 1.241493, "distance_km": 185724767.0},
-  {"date": "2060-Jan-01", "distance_au": 1.470136, "distance_km": 219929215.0},
-  {"date": "2070-Jan-01", "distance_au": 2.034936, "distance_km": 304422111.0},
-  {"date": "2080-Jan-01", "distance_au": 1.39199, "distance_km": 208238734.0},
-  {"date": "2090-Jan-01", "distance_au": 1.848962, "distance_km": 276600791.0},
-  {"date": "2100-Jan-01", "distance_au": 1.840736, "distance_km": 275370197.0},
-  {"date": "2110-Jan-01", "distance_au": 1.359957, "distance_km": 203446661.0},
-  {"date": "2120-Jan-01", "distance_au": 2.107906, "distance_km": 315338235.0},
-  {"date": "2130-Jan-01", "distance_au": 0.779561, "distance_km": 116620708.0},
+  {"date": "2029-Jan-01", "distance_au": 1.86094, "distance_km": 278392652.0},
+  {"date": "2031-Jan-01", "distance_au": 0.346933, "distance_km": 51900368.0},
+  {"date": "2033-Jan-01", "distance_au": 2.191514, "distance_km": 327845841.0},
+  {"date": "2035-Jan-01", "distance_au": 1.938582, "distance_km": 290007790.0},
+  {"date": "2037-Jan-01", "distance_au": 0.18665, "distance_km": 27922483.0},
+  {"date": "2039-Jan-01", "distance_au": 2.151332, "distance_km": 321834679.0},
+  {"date": "2041-Jan-01", "distance_au": 1.996342, "distance_km": 298648555.0},
+  {"date": "2043-Jan-01", "distance_au": 0.117722, "distance_km": 17610916.0},
+  {"date": "2045-Jan-01", "distance_au": 2.109531, "distance_km": 315581273.0},
+  {"date": "2047-Jan-01", "distance_au": 2.045633, "distance_km": 306022315.0},
+  {"date": "2049-Jan-01", "distance_au": 0.178753, "distance_km": 26741029.0},
+  {"date": "2051-Jan-01", "distance_au": 2.064147, "distance_km": 308791948.0},
+  {"date": "2053-Jan-01", "distance_au": 2.087224, "distance_km": 312244301.0},
+  {"date": "2055-Jan-01", "distance_au": 0.289826, "distance_km": 43357280.0},
+  {"date": "2057-Jan-01", "distance_au": 2.026484, "distance_km": 303157653.0},
+  {"date": "2059-Jan-01", "distance_au": 2.112345, "distance_km": 316002275.0},
+  {"date": "2061-Jan-01", "distance_au": 0.347015, "distance_km": 51912660.0},
+  {"date": "2063-Jan-01", "distance_au": 1.857159, "distance_km": 277827077.0},
+  {"date": "2065-Jan-01", "distance_au": 2.233738, "distance_km": 334162496.0},
+  {"date": "2067-Jan-01", "distance_au": 1.093445, "distance_km": 163577067.0},
+  {"date": "2069-Jan-01", "distance_au": 1.301232, "distance_km": 194661568.0},
+  {"date": "2071-Jan-01", "distance_au": 2.286203, "distance_km": 342011109.0},
+  {"date": "2073-Jan-01", "distance_au": 1.648703, "distance_km": 246642461.0},
+  {"date": "2075-Jan-01", "distance_au": 0.535609, "distance_km": 80125988.0},
+  {"date": "2077-Jan-01", "distance_au": 2.166773, "distance_km": 324144642.0},
+  {"date": "2079-Jan-01", "distance_au": 2.024648, "distance_km": 302883011.0},
+  {"date": "2081-Jan-01", "distance_au": 0.361906, "distance_km": 54140327.0},
+  {"date": "2083-Jan-01", "distance_au": 1.795126, "distance_km": 268547010.0},
+  {"date": "2085-Jan-01", "distance_au": 2.255985, "distance_km": 337490623.0},
+  {"date": "2087-Jan-01", "distance_au": 1.303817, "distance_km": 195048227.0},
+  {"date": "2089-Jan-01", "distance_au": 0.977573, "distance_km": 146242798.0},
+  {"date": "2091-Jan-01", "distance_au": 2.238721, "distance_km": 334907922.0},
+  {"date": "2093-Jan-01", "distance_au": 1.903867, "distance_km": 284814445.0},
+  {"date": "2095-Jan-01", "distance_au": 0.166885, "distance_km": 24965708.0},
+  {"date": "2097-Jan-01", "distance_au": 1.918633, "distance_km": 287023481.0},
+  {"date": "2099-Jan-01", "distance_au": 2.219775, "distance_km": 332073626.0},
+  {"date": "2101-Jan-01", "distance_au": 1.094132, "distance_km": 163679779.0},
+  {"date": "2103-Jan-01", "distance_au": 1.238569, "distance_km": 185287298.0},
+  {"date": "2105-Jan-01", "distance_au": 2.272467, "distance_km": 339956267.0},
+  {"date": "2107-Jan-01", "distance_au": 1.771857, "distance_km": 265066079.0},
+  {"date": "2109-Jan-01", "distance_au": 0.234649, "distance_km": 35103053.0},
+  {"date": "2111-Jan-01", "distance_au": 2.046342, "distance_km": 306128371.0},
+  {"date": "2113-Jan-01", "distance_au": 2.1561, "distance_km": 322547943.0},
+  {"date": "2115-Jan-01", "distance_au": 0.825199, "distance_km": 123448010.0},
+  {"date": "2117-Jan-01", "distance_au": 1.497487, "distance_km": 224020820.0},
+  {"date": "2119-Jan-01", "distance_au": 2.287103, "distance_km": 342145781.0},
+  {"date": "2121-Jan-01", "distance_au": 1.574719, "distance_km": 235574613.0},
+  {"date": "2123-Jan-01", "distance_au": 0.602307, "distance_km": 90103891.0},
+  {"date": "2125-Jan-01", "distance_au": 2.162236, "distance_km": 323465841.0},
+  {"date": "2127-Jan-01", "distance_au": 2.048957, "distance_km": 306519590.0},
+  {"date": "2129-Jan-01", "distance_au": 0.484947, "distance_km": 72547040.0},
+  {"date": "2131-Jan-01", "distance_au": 1.734812, "distance_km": 259524189.0},
+  {"date": "2133-Jan-01", "distance_au": 2.268572, "distance_km": 339373481.0},
   {"date": "2135-Jan-01", "distance_au": 1.354564, "distance_km": 202639819.0},
   {"date": "2135-Sep-01", "distance_au": 0.086408, "distance_km": 12926513.0},
+  {"date": "2135-Sep-02", "distance_au": 0.082665, "distance_km": 12366576.0},
+  {"date": "2135-Sep-03", "distance_au": 0.078947, "distance_km": 11810268.0},
+  {"date": "2135-Sep-04", "distance_au": 0.075252, "distance_km": 11257494.0},
   {"date": "2135-Sep-05", "distance_au": 0.07158, "distance_km": 10708154.0},
+  {"date": "2135-Sep-06", "distance_au": 0.06793, "distance_km": 10162147.0},
+  {"date": "2135-Sep-07", "distance_au": 0.064301, "distance_km": 9619360.0},
+  {"date": "2135-Sep-08", "distance_au": 0.060694, "distance_km": 9079669.0},
+  {"date": "2135-Sep-09", "distance_au": 0.057106, "distance_km": 8542933.0},
   {"date": "2135-Sep-10", "distance_au": 0.053537, "distance_km": 8008990.0},
+  {"date": "2135-Sep-11", "distance_au": 0.049985, "distance_km": 7477658.0},
+  {"date": "2135-Sep-12", "distance_au": 0.046449, "distance_km": 6948738.0},
+  {"date": "2135-Sep-13", "distance_au": 0.042929, "distance_km": 6422018.0},
+  {"date": "2135-Sep-14", "distance_au": 0.039421, "distance_km": 5897278.0},
   {"date": "2135-Sep-15", "distance_au": 0.035925, "distance_km": 5374298.0},
+  {"date": "2135-Sep-16", "distance_au": 0.032439, "distance_km": 4852860.0},
+  {"date": "2135-Sep-17", "distance_au": 0.028963, "distance_km": 4332756.0},
+  {"date": "2135-Sep-18", "distance_au": 0.025494, "distance_km": 3813790.0},
+  {"date": "2135-Sep-19", "distance_au": 0.022031, "distance_km": 3295789.0},
   {"date": "2135-Sep-20", "distance_au": 0.018574, "distance_km": 2778618.0},
+  {"date": "2135-Sep-21", "distance_au": 0.015122, "distance_km": 2262221.0},
+  {"date": "2135-Sep-22", "distance_au": 0.011676, "distance_km": 1746745.0},
+  {"date": "2135-Sep-23", "distance_au": 0.008242, "distance_km": 1233002.0},
   {"date": "2135-Sep-24", "distance_au": 0.004847, "distance_km": 725076.0},
   {"date": "2135-Sep-25", "distance_au": 0.001783, "distance_km": 266711.0}
 ];
-
 let pulseTime = 0;
 let currentUnit = 'AU';
 let isDragging = false;
@@ -333,11 +395,21 @@ function setup() {
     let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
     canvas.parent('logoContainer');
     
-    // Setup drag events
+    // Setup drag events for desktop
     const handle = document.getElementById('progressHandle');
+    const bar = document.getElementById('progressBar');
+    
+    // Mouse events
     handle.addEventListener('mousedown', startDrag);
+    bar.addEventListener('mousedown', handleProgressClickOrTouch);
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', stopDrag);
+    
+    // Touch events
+    handle.addEventListener('touchstart', startDrag);
+    bar.addEventListener('touchstart', handleProgressClickOrTouch);
+    document.addEventListener('touchmove', drag);
+    document.addEventListener('touchend', stopDrag);
 }
 
 function draw() {
@@ -420,7 +492,7 @@ function updateCountdown() {
         
         document.getElementById('days').textContent = days.toLocaleString();
         
-        // 自动更新进度
+        // 自动更新进度（关键：这里会让进度条返回当前位置）
         const totalTime = targetDate - startDate;
         const elapsed = now - startDate;
         currentProgress = Math.max(0, Math.min(1, elapsed / totalTime));
@@ -477,10 +549,19 @@ function changeUnit(unit) {
     updateDistanceFromProgress();
 }
 
-function handleProgressClick(event) {
+function handleProgressClickOrTouch(event) {
+    // 如果是handle触发的，不处理（避免重复）
+    if (event.target.id === 'progressHandle') return;
+    
+    event.preventDefault();
+    
     const bar = document.getElementById('progressBar');
     const rect = bar.getBoundingClientRect();
-    const x = event.clientX - rect.left;
+    
+    // 获取位置（支持鼠标和触摸）
+    const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+    const x = clientX - rect.left;
+    
     currentProgress = Math.max(0, Math.min(1, x / rect.width));
     document.getElementById('progressFill').style.width = (currentProgress * 100) + '%';
     
@@ -508,9 +589,16 @@ function startDrag(e) {
 
 function drag(e) {
     if (!isDragging) return;
+    
+    e.preventDefault();
+    
     const bar = document.getElementById('progressBar');
     const rect = bar.getBoundingClientRect();
-    const x = e.clientX - rect.left;
+    
+    // 获取位置（支持鼠标和触摸）
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const x = clientX - rect.left;
+    
     currentProgress = Math.max(0, Math.min(1, x / rect.width));
     document.getElementById('progressFill').style.width = (currentProgress * 100) + '%';
     
